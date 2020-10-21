@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+	<body>
+		<form action="{% url 'myapp:doctor' %}" method="post" class="container-fluid">
+		{% csrf_token %}
+		 <label><b>Treatment Report for: </b></label> <input type="text">
+        {{ form|crispy}}
+        <input type="submit" class="btn btn-info" name="submit1" value="Submit" />
+		
+		</form>
+	</body>
+{% endblock %}

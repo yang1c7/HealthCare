@@ -1,0 +1,23 @@
+{%  extends 'myapp/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+    <body>
+
+  <h1 style="text-align: left; margin-left: 30px; text-decoration: none">Sign Up</h1>
+  <form method="post" class="container-fluid" style="margin-left: 20px;width: fit-content">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+{#        {{ field.label_tag }}<br>#}
+        {{ field|as_crispy_field  }}
+
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit" class="btn btn-info">Sign up</button>
+  </form>
+{% endblock %}

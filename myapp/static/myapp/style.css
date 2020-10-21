@@ -1,0 +1,30 @@
+.hbar1 {      /*.hbar1 is a class in base.html*/
+    display: inline;
+    margin: 15px;
+}
+.oldesign{
+  display: block;
+  list-style-type: decimal;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+
+}
+
+h2, p{
+    color: red;
+    font-family: 'Lobster';
+    font-style: italic;
+    padding-left: 15px;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+a {
+    color: black;
+    font-family: Candara;
+    font-style: italic;
+
+}
+
