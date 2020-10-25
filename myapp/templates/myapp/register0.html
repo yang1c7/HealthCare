@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../../static/myapp/CSS/register.css">
+</head>
+{% load crispy_forms_tags %}
+<body>
+    <div id="register"><a id="register-a" disabled="true" style="pointer-events:none; display: block; font-size: 60px; top: 60px; left: 1040.5px;" href="javascript:;">Register</a></div>
+
+    <div id="noteArea">
+        <div class="note">
+            <img id="correct01" src="../../static/myapp/img/correct.png">
+            <span id="note1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required. 150 characters or fewer.
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Letters, digits and @/./+/-/_ only.</span>
+        </div>
+        <div class="note">
+            <img id="correct02" src="../../static/myapp/img/correct.png">
+            <span id="note2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter a correct Email</span>
+        </div>
+        <div class="note">
+            <img id="correct03" src="../../static/myapp/img/correct.png">
+            <span id="note3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your password must contain at least 8 characters.
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your password can’t be entirely numeric.
+            </span>
+        </div>
+        <div class="note">
+            <img id="correct04" src="../../static/myapp/img/correct.png">
+            <span id="note4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Different from above</span>
+        </div>
+    </div>
+
+
+    <form action="{% url 'myapp:register' %}" method="post" id="registerForm">
+        {% csrf_token %}
+        <div id="uname0" class="Rform">
+            Username:
+            <br><input type="text" name="username" required>
+        </div>
+        <div id="email" class="Rform">
+            Email:
+            <br><input type="email" name="email" required>
+        </div>
+        <div id="pwd0" class="Rform">
+            Password:
+            <br><input type="password" name="password1" required>
+        </div>
+        <div id="pwd2" class="Rform">
+            Confirm Password:
+            <br><input type="password" name="password2" required>
+        </div>
+        <div id="submit0" class="Rform"><input type="submit" value="OK" id="subtn0"></div>
+
+
+    </form>
+
+</body>
+<script src="../../static/myapp/js/jquery-1.10.1.js"></script>
+<script>
+    $('#registerForm').fadeIn(1000);
+     var $username = $("input[name='username']");
+    var $email = $("input[name='email']");
+    var $pwd = $("input[name='password1']");
+    var $pwd2 = $("input[name='password2']");
+
+    var $c01 = $('#correct01');
+    var $c02 = $('#correct02');
+    var $c03 = $('#correct03');
+    var $c04 = $('#correct04');
+    var $note1 = $('#note1');
+    var $note2 = $('#note2');
+    var $note3 = $('#note3');
+    var $note4 = $('#note4');
+
+
+    var username = false;
+    var email = false;
+    var password = false;
+    var Confirm = false;
+
+    $username.blur(function(){
+        var str = $username.val();
+        if( str.length > 150 || str.length == 0 ){
+            $c01.animate({opacity: '0'}, 1000);
+            $note1.animate({opacity: '1'}, 1000);
+            username = false;
+        }else{
+            $c01.animate({opacity: '1'}, 1000);
+            $note1.animate({opacity: '0'}, 1000);
+            username = true;
+        }
+        ifComplete();
+    });
+    $email.blur(function(){
+        var str = $email.val();
+        var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
+        if(reg.test(str)){
+            //alert("邮箱格式正确");
+            $c02.animate({opacity: '1'}, 1000);
+            $note2.animate({opacity: '0'}, 1000);
+            email = true;
+		}else{
+            $c02.animate({opacity: '0'}, 1000);
+            $note2.animate({opacity: '1'}, 1000);
+            email = false;
+        }
+        ifComplete();
+    });
+    var pwd1, pwd2;
+    $pwd.blur(function(){
+        var str = $pwd.val();
+        pwd1 = str;
+        var reg = /^[0-9]*$/;
+
+        if(str.length < 8 || reg.test(str)){
+            $c03.animate({opacity: '0'}, 1000);
+            $note3.animate({opacity: '1'}, 1000);
+            password = false;
+        }else{
+            $c03.animate({opacity: '1'}, 1000);
+            $note3.animate({opacity: '0'}, 1000);
+            password = true;
+        }
+        $pwd2.blur();
+        ifComplete();
+    });
+    $pwd2.blur(function(){
+        pwd2 = $pwd2.val();
+        if(pwd1 === pwd2 && pwd1 != ""){
+            $c04.animate({opacity: '1'}, 1000);
+            $note4.animate({opacity: '0'}, 1000);
+            Confirm = true;
+        }else{
+            $c04.animate({opacity: '0'}, 1000);
+            $note4.animate({opacity: '1'}, 1000);
+            Confirm = false;
+        }
+        ifComplete();
+    });
+
+    var ifComplete = function(){
+        if(username && password && email && Confirm){
+            $('#subtn0').css('color', 'tomato');
+            $('#subtn0').css('border', '2px solid white');
+            $('#subtn0').css('pointer-events', 'auto');
+        }else{
+            $('#subtn0').css('color', 'darkgray');
+            $('#subtn0').css('border', '2px solid darkgray');
+            $('#subtn0').css('pointer-events', 'none');
+        }
+    }
+
+</script>
+</html>

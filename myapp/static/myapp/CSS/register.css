@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: black;
+    overflow: hidden;
+  }
+
+a:hover{
+    color: rgb(128, 128, 128)!important;
+    font-size: 110px!important;
+    text-shadow: 5px 5px 0 rgb(36, 182, 162), 5px 5px 0 #000!important;
+}
+a:link{
+    text-decoration:none;
+}
+a:active{
+    color: rgb(68, 67, 67)!important;
+    font-size: 90px!important;
+}
+
+
+#register a{
+    position: absolute;
+    /* left: 366px;  */
+    left: 50%;
+    top: 50%;
+    color: aquamarine;
+    font-size: 100px;
+    font-weight: 900;
+    margin-top: -0px;
+    margin-left: -400px;
+    /* width: 800px; */
+    display: none;
+    z-index: 10;
+}
+
+
+#registerForm{
+    width: 600px;
+    height: 700px;
+    border: 2px solid white;
+    position: absolute;
+    text-align: center;
+	left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: 20px;
+    display: none;
+}
+.Rform{
+    position: relative;
+    top: 20%;
+    color: tomato;
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+input{
+    outline-style: none ;
+    background-color: black;
+    color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #ccc;
+    border-radius: 60px;
+    padding: 14px 14px;
+    width: 400px;
+    font-size: 24px;
+    text-align: center;
+}
+
+ #subtn0{
+    width: 100px;
+    height: 60px;
+    border: 2px solid darkgray;
+    color: darkgray;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+  img{
+        width: 20px;
+        height: 20px;
+        margin-left: auto;
+        border-radius: 15px;
+        opacity: 0;
+    }
+  #noteArea{
+    width: 400px;
+    height: 500px;
+    position: absolute;
+	left: 80%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: 20px;
+}
+.note{
+    width: 400px;
+    height: 50px;
+    position: relative;
+    top: 58px;
+    margin-top: 52px;
+    vertical-align:middle;
+    display: inline-block;
+}
+span{
+    font-size: medium;
+    color: orange;
+    opacity: 0;
+}
+#note3{
+    font-size: small;
+}
