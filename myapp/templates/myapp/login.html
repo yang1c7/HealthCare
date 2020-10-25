@@ -1,23 +1,25 @@
-{% extends 'myapp/base.html' %}
-{% block body_block %}
-	<form action="{% url 'myapp:user_login' %}" method="post">
-		{% csrf_token %}
-		
-		{% if request.GET.next %}
-            <input class="alert alert-danger" type="hidden" name="next" value="{{ request.GET.next }}">
-        {% endif %}
-		<div class="form-group">
-			<b><label for="username">Username:</label></b>
-			<input type="input" name="username" class="form-control" required>
-		</div>
-		<div class="form-group">
-			<b><label for="password">Password:</label></b>
-			<input type="password" name="password" class="form-control" required>
-		</div>
-		
-		<input type="submit" name="submit1" value="Login" class="btn btn-primary" />
-		<br>
-     
-        <a  href = "{% url 'myapp:password_reset' %}"> Forgot Password? </a>
-	</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="../../static/myapp/CSS/login.css">
+</head>
+
+<body>
+    <div id="login"><a id="login-a" disabled="true"  href="javascript:;">Login</a></div>
+
+    <form action="{% url 'myapp:user_login' %}" method="post" id="loginForm">
+        {% csrf_token %}
+        <div id="uname" class="Lform"> Username:<br><input type="input" name="username" required></div>
+        <div id="pwd" class="Lform"> Password:<br><input type="password" name="password" required></div>
+        <div id="submit" class="Lform"><input type="submit" value="OK" id="subtn" name="submit1"></div>
+
+    </form>
+</body>
+<script src="../../static/myapp/js/jquery-1.10.1.js"></script>
+<script>
+    $('#loginForm').fadeIn(1000);
+</script>
+</html>

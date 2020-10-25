@@ -2,13 +2,14 @@ from datetime import datetime
 import pytz
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from myapp.forms import UserCreationForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from myapp.forms import PatientForm, DoctorForm
 from myapp.models import Topic
 from django.views import View
+
 
 # Create your views here.
 
@@ -37,6 +38,12 @@ def patient(request):
     else:
         form = PatientForm()
     return render(request, 'myapp/patient.html', {'form': form, 'msg': msg})
+
+
+def home(request):
+
+    return render(request, 'myapp/home.html')
+
 
 def doctor(request):
     msg = ''
@@ -74,13 +81,13 @@ def user_login(request):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        print(form)
         if form.is_valid():
             user = form.save()
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('myapp:index')
-    else:
-        form = UserCreationForm()
-    return render(request, 'myapp/register.html', {'form': form})
+            #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('myapp:home')
+
+    return render(request, 'myapp/register0.html')
 
 @login_required
 def user_logout(request):

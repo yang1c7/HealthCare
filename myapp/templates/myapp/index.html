@@ -1,17 +1,35 @@
-{% extends 'myapp/base.html' %}
-{% block body_block %}
-{#    {%  include 'index1.html' %}#}
-	<body>
-	
-    {% if ash %}
-		<h3>List of Topics</h3>
-		<ol>
-			{% for topic in ash %}
-				<li><a> {{topic.name}} </a></li>
-			{% endfor %}
-		</ol>
-	{% else %}
-		<strong>There are no available topics!</strong>
-	{% endif %}
-	
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/myapp/CSS/home.css">
+    <title>Welcome!</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="content">
+         <div class="item" style="color: darkseagreen;">Focus</div>
+         <div class="item">On</div>
+         <div class="item" style="color: cornflowerblue;">Your</div>
+         <div class="item">Health.</div>
+        </div>
+    </div>
+    <div id="start">Start NOW!</div>
+    <div id="login"><a id="login-a" href="javascript:;">Login</a></div>
+    <div id="register"><a id="register-a" href="javascript:;">Register</a></div>
+
+
+
+    <div id="bgContainer">
+        <video id="bg" autoplay muted loop>
+            <source src="../../static/myapp/img/5s.mp4">
+            <embed src="../../static/myapp/img/5s.mp4" type="video/mp4">
+        </video>
+    </div>
+   
+    
+</body>
+<script src="../../static/myapp/js/jquery-1.10.1.js"></script>
+<script src="../../static/myapp/js/home.js"></script>
+</html>

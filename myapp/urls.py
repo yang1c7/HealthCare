@@ -10,6 +10,7 @@ app_name = 'myapp'
 urlpatterns = [
     path(r'', views.IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
+    path(r'home',views.home, name='home'),
     path(r'patient', views.patient, name='patient'),
     path(r'patient_response', views.patient, name='patient_response'),
     path(r'doctor', views.doctor, name='doctor'),
