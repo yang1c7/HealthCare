@@ -6,7 +6,14 @@ from django.contrib.auth.models import User
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = {'name', 'age', 'gender', 'symptom'}
+        first_name = forms.CharField(required=False)
+        last_name = forms.CharField(required=False)
+        age = forms.CharField(required=False)
+        gender = forms.CharField(required=False)
+        address = forms.CharField(required=False)
+        user_id = forms.CharField(required=False)
+        symptom = forms.CharField(required=False)
+        fields = {'first_name', 'last_name', 'age', 'gender', 'address', 'user_id', 'symptom'}
 
 
 class DoctorForm(forms.ModelForm):

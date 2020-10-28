@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../../static/myapp/CSS/login.css">
 </head>
 
 <body>
+    {% if msg is True %}
+        <p id="confirm" style="display: none;">true</p>
+    {% else %}
+        <p id="confirm" style="display: none;">false</p>
+    {% endif %}
+
     <div id="login"><a id="login-a" disabled="true"  href="javascript:;">Login</a></div>
+    <div id="invalid">Invalid username or password<br>Please try again</div>
 
     <form action="{% url 'myapp:user_login' %}" method="post" id="loginForm">
         {% csrf_token %}
@@ -21,5 +28,14 @@
 <script src="../../static/myapp/js/jquery-1.10.1.js"></script>
 <script>
     $('#loginForm').fadeIn(1000);
+    var $con = $('#confirm').html();
+    console.log($con)
+    console.log($con == 'true')
+    if($con == 'true'){
+        $('#invalid').fadeIn(1000);
+    }
+    $('input').click(function () {
+        $('#invalid').fadeOut(1000);
+    });
 </script>
 </html>

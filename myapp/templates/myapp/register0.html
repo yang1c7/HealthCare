@@ -9,6 +9,8 @@
 {% load crispy_forms_tags %}
 <body>
     <div id="register"><a id="register-a" disabled="true" style="pointer-events:none; display: block; font-size: 60px; top: 60px; left: 1040.5px;" href="javascript:;">Register</a></div>
+    <div id="error" style="display: none">{{ error }}</div>
+
 
     <div id="noteArea">
         <div class="note">
@@ -35,6 +37,7 @@
 
     <form action="{% url 'myapp:register' %}" method="post" id="registerForm">
         {% csrf_token %}
+        <div id="message">The username has been existed.</div>
         <div id="uname0" class="Rform">
             Username:
             <br><input type="text" name="username" required>
@@ -51,20 +54,28 @@
             Confirm Password:
             <br><input type="password" name="password2" required>
         </div>
+
+
+         <div id="DorP" class="Rform">
+            I am a:
+             <br>
+             <input type="radio" name="identi" checked="checked">Patient <br>
+             <input type="radio" name="identi">Doctor
+        </div>
         <div id="submit0" class="Rform"><input type="submit" value="OK" id="subtn0"></div>
-
-
     </form>
 
 </body>
 <script src="../../static/myapp/js/jquery-1.10.1.js"></script>
 <script>
     $('#registerForm').fadeIn(1000);
-     var $username = $("input[name='username']");
+    var $username = $("input[name='username']");
     var $email = $("input[name='email']");
     var $pwd = $("input[name='password1']");
     var $pwd2 = $("input[name='password2']");
-
+    var $mes = $('#message');
+    var error = $('#error').html();
+    console.log(error)
     var $c01 = $('#correct01');
     var $c02 = $('#correct02');
     var $c03 = $('#correct03');
@@ -151,6 +162,13 @@
             $('#subtn0').css('pointer-events', 'none');
         }
     }
+
+    if(error == 1){
+        $mes.fadeIn(800);
+    }
+    $username.click(function () {
+        $mes.fadeOut(800);
+    });
 
 </script>
 </html>
