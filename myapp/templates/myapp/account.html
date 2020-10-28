@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/myapp/CSS/account.css">
+    <title>My account</title>
+</head>
+<body>
+    <p id="error" style="display: none">{{ failed }}</p>
+    <p id="username" style="display: none">{{ username }}</p>
+    <p id="email" style="display: none">{{ email }}</p>
+    <div id="mask"></div>
+    <div id="title">
+        <h1></h1>
+        <p id="time"></p>
+        <br>
+        <p id="message">The username has been existed.</p>
+    </div>
+
+    <span id="logout"> <a href="{% url 'myapp:user_logout' %}"> log out</a></span>
+    <div id="navigation">
+        <div class="naviItems" value="1" style="background-color:  rgba(0, 0, 0, 0.3);">Personal information</div>
+        <div class="naviItems" value="2">item2</div>
+        <div class="naviItems" value="3">item3</div>
+        <div class="naviItems" value="4">item4</div>
+    </div>
+    <div id="showArea">
+
+        <div class="shownItems" value="1" style="display: block;">
+            <form action="{% url 'myapp:userInfoChange' %}" method="post">
+                {% csrf_token %}
+             <div style="display: none"><input name="id" type="text" value="{{ userId }}"></div>
+             <div id="notepart">
+                <div id="uname" class="left">Username:</div><br><br>
+                <div id="email" class="left">Email:</div><br><br>
+                <div id="firstname" class="left">First name:</div><br><br>
+                <div id="lastname" class="left">Last name:</div><br><br>
+                <div id="age" class="left">Age:</div><br><br>
+                <div id="gender" class="left">Gender:</div><br><br>
+                <div id="address" class="left">Address:</div><br><br>
+             </div>
+
+
+            <div id="inputpart">
+                <input id="uninput" class="right" style="display: none" type="input" name="username" placeholder="{{ username }}">
+                 <a href="javascript:void(0);" class="right" onclick="showusername()" id="changeUname">{{ username }}</a>
+                <br><br>
+
+                <input id="emailinput" class="right" style="display: none" type="input" name="email" placeholder="{{ email }}">
+                <a href="javascript:void(0);" class="right" onclick="showemail()" id="changeEma" >{{ email }}</a>
+                <br><br>
+
+                <input id="fninput" class="right" style="display: none" type="input" name="first_name" placeholder="{{ firstname }}">
+                <a href="javascript:void(0);" class="right" onclick="showfirstname()" id="changefn" >{{ firstname }}</a>
+                <br><br>
+
+                <input id="lninput" class="right" style="display: none" type="input" name="last_name" placeholder="{{ lastname }}">
+                <a href="javascript:void(0);" class="right" onclick="showlastname()" id="changeln" >{{ lastname }}</a>
+                <br><br>
+
+                <input id="ageinput" class="right" style="display: none" type="input" name="age" placeholder="{{ age }}">
+                <a href="javascript:void(0);" class="right"  onclick="showage()" id="changeage" >{{ age }}</a>
+                <br><br>
+
+                <select id="genderselect" style="display: none" class="right" name="gender">
+                   <option value="M">Male</option>
+                   <option value="F">Female</option>
+                </select>
+                <a href="javascript:void(0);" class="right"  onclick="showgender()" id="changegender" >{{ gender }}</a>
+                <br><br>
+
+                <input id="addrinput" class="right" style="display: none" type="input" name="address" placeholder="{{ address }}">
+                 <a href="javascript:void(0);" class="right" onclick="showaddr()" id="changeaddr" >{{ address }}</a>
+
+            </div>
+               <div id="submit"><input type="submit" value="OK" id="subtn" name="submit1"></div>
+            </form>
+        </div>
+        <div class="shownItems" value="2">this is the area for item2</div>
+        <div class="shownItems" value="3">this is the area for item3</div>
+        <div class="shownItems" value="4">this is the area for item4</div>
+    </div>
+    <div id="appointments">No appointment currently</div>
+</body>
+<script src="../../static/myapp/js/jquery-1.10.1.js"></script>
+<script src="../../static/myapp/js/account.js"></script>
+</html>

@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: black;
+    /*background-image: url('../img/morning.jpg');*/
+    background-repeat:no-repeat;
+    background-size: 100%;
+}
+
+
+#mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    opacity: 0;
+}
+#navigation{
+    width: 30%;
+    height: 70%;
+    top: 25%;
+    position: absolute;
+    display: none;
+    /* border: 2px solid chartreuse; */
+}
+#showArea{
+    width: 40%;
+    height: 70%;
+    left: 30%;
+    top: 25%;
+    position: absolute;
+    border: 1px solid white;
+    border-radius: 50px;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#appointments{
+    width: 25%;
+    height: 70%;
+    right: 3%;
+    top: 25%;
+    position: absolute;
+    border: 1px solid white;
+    border-radius: 50px;
+    color: white;
+    font-size: 35px;
+    line-height: 80px;
+    text-align: center;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.naviItems{
+    position: relative;
+    width: 60%;
+    height: 10%;
+    border: 2px solid lightblue;
+    margin-top: 8%;
+    left: 20%;
+    border-radius: 40px;
+    color: lightskyblue;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    line-height: 50px;
+    background-color: rgba(0, 0, 0, 0);
+}
+.shownItems{
+    width: 100%;
+    height: 90%;
+    top: 8%;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+   /*  border: 2px solid lightcoral; */
+    display: none;
+    overflow: auto;
+}
+#logout{
+    position: absolute;
+    color: white;
+    right: 0;
+    font-size: 20px;
+}
+#logout a:visited{
+    color: white;
+}
+#title{
+    position: absolute;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 25px;
+}
+#time{
+    font-size: small;
+}
+
+a:hover{
+    color: rgb(128, 128, 128)!important;
+}
+a:link{
+    text-decoration:none;
+    color: lightcoral;
+    font-weight: 900;
+}
+a:active{
+    color: rgb(68, 67, 67)!important;
+}
+a:visited{
+    text-decoration:none;
+    color: lightcoral;
+    font-weight: 900;
+}
+input{
+    outline-style: none ;
+    background-color: rgba(0,0,0,0);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #ccc;
+    color: white;
+    text-align: center;
+    font-weight: 900;
+
+}
+#subtn{
+    position: absolute;
+    height: 50px;
+    width: 10%;
+    left: 45%;
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+    bottom: 30px;
+}
+
+#notepart{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    left: 23%;
+    color: lightblue;
+    font-weight: 900;
+}
+#inputpart{
+    position: absolute;
+    right: 20%;
+    top: 0;
+    height: 100%;
+    width: 50%;
+}
+.left{
+    position: absolute;
+    left: 0px;
+}
+.right{
+    position: absolute;
+    right: 0px;
+}
+#message{
+    position: absolute;
+    color: red;
+    width: 40%;
+    left: 30%;
+    font-size: small;
+    font-weight: 900;
+    margin-top: 50px;
+    display: none;
+}

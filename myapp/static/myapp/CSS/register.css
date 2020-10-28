@@ -47,7 +47,7 @@ a:active{
     top: 50%;
     transform: translate(-50%,-50%);
     color: white;
-    font-size: 20px;
+    font-size: 10px;
     display: none;
 }
 .Rform{
@@ -68,8 +68,8 @@ input{
     border-bottom: 3px solid #ccc;
     border-radius: 60px;
     padding: 14px 14px;
-    width: 400px;
-    font-size: 24px;
+    width: 200px;
+    font-size: 12px;
     text-align: center;
 }
 
@@ -117,4 +117,18 @@ span{
 }
 #note3{
     font-size: small;
+}
+#message{
+    position: absolute;
+    color: lightcoral;
+    font-size: small;
+    text-align: center;
+    top: 20%;
+    width: 36%;
+    left: 32%;
+    font-weight: 900;
+    display: none;
+}
+input[name="identi"]{
+
 }

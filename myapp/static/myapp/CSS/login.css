@@ -9,7 +9,7 @@ body{
 #login a{
     position: absolute;
     /* left: 366px;  */
-    left: 1065px;
+    left: 1068px;
     top: 80px;
     color: pink;
     font-size: 70px;
@@ -77,4 +77,15 @@ a:link{
 a:active{
     color: rgb(68, 67, 67)!important;
     font-size: 90px!important;
+}
+#invalid{
+    position: absolute;
+    text-align: center;
+	left: 50%;
+    top: 28%;
+    transform: translate(-50%,-50%);
+    color: lightblue;
+    font-size: 15px;
+    font-weight: 900;
+    display: none;
 }
