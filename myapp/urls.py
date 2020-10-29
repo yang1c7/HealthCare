@@ -12,6 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'home',views.home, name='home'),
     path(r'userInfoChange',views.userInfoChange, name='userInfoChange'),
+    path(r'userInfoChange_doctor',views.userInfoChange_doctor, name='userInfoChange_doctor'),
     path(r'account',views.account, name='account'),
     path(r'patient', views.patient, name='patient'),
     path(r'patient_response', views.patient, name='patient_response'),
