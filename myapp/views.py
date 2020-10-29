@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from myapp.forms import PatientForm, DoctorForm
-from myapp.models import Topic, Patient
+from myapp.models import Topic, Patient, Doctor
 from django.views import View
 
 
@@ -86,7 +86,7 @@ def userInfoChange(request):
                     _oldUser.username = username
             email = request.POST.get("email", "")
             if email:
-                _patient.email = email
+                #_patient.email = email
                 _oldUser.email = email
             first_name = request.POST.get("first_name", "")
             if first_name:
@@ -125,6 +125,67 @@ def userInfoChange(request):
     return render(request, "myapp/account.html")
 
 
+def userInfoChange_doctor(request):
+    if request.method == 'POST':
+        form_obj = DoctorForm(request.POST)
+        if form_obj.is_valid():
+            id = request.POST.get("id", "")
+            doctor = Doctor.objects.filter(user_id=id)
+            _doctor = doctor[0]
+            oldUser = User.objects.filter(id=id)
+            _oldUser = oldUser[0]
+
+            username = request.POST.get("username", "")
+            check = True
+            if username:
+                checkifUsername = User.objects.filter(username=username)
+                if checkifUsername.count() != 0:
+                    check = False
+                else:
+                    _doctor.username = username
+                    _oldUser.username = username
+            email = request.POST.get("email", "")
+            if email:
+                #_doctor.email = email
+                _oldUser.email = email
+            first_name = request.POST.get("first_name", "")
+            if first_name:
+                _doctor.first_name = first_name
+                _oldUser.first_name = first_name
+            last_name = request.POST.get("last_name", "")
+            if last_name:
+                _doctor.last_name = last_name
+                _oldUser.last_name = last_name
+            age = request.POST.get("age", "")
+            if age:
+                _doctor.age = age
+            gender = request.POST.get("gender", "")
+            if gender:
+                if gender == 'M':
+                    _doctor.gender = "M"
+                    g = "Male"
+                elif gender == "F":
+                    _doctor.gender = "F"
+                    g = "Female"
+            address = request.POST.get("address", "")
+            if address:
+                _doctor.address = address
+
+            if not check:
+                return render(request, "myapp/doctor.html",
+                              {'username': _doctor.username, 'email': _oldUser.email, 'userId': id,
+                               "firstname": _doctor.first_name, "lastname": _doctor.last_name,
+                               "age": _doctor.age, "gender": g, "address": _doctor.address, "failed": 1})
+            else:
+                _doctor.save()
+                _oldUser.save()
+
+                return render(request, "myapp/doctor.html", {'username': _doctor.username, 'email': _oldUser.email, 'userId': id, "firstname": _doctor.first_name, "lastname": _doctor.last_name,
+                                                              "age": _doctor.age, "gender": g, "address": _doctor.address, "failed": 0})
+    return render(request, "myapp/doctor.html")
+
+
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -139,38 +200,79 @@ def user_login(request):
             # if 'next' in request.POST:
             #     return redirect(request.POST.get('next'))
             # else:
-            patient = Patient.objects.filter(user_id=user.id)
-            message = 'click to update'
-            if patient.count() != 0:
-                    if patient[0].first_name:
-                        firstname = patient[0].first_name
+
+            # 判断是医生还是病人
+            # 是医生
+            if user.identity == '1':
+                doctor = Doctor.objects.filter(user_id=user.id)
+                message = 'click to update'
+                if doctor.count() != 0:
+                    if doctor[0].first_name:
+                        firstname = doctor[0].first_name
                     else:
                         firstname = message
-                    if patient[0].last_name:
-                        lastname = patient[0].last_name
+                    if doctor[0].last_name:
+                        lastname = doctor[0].last_name
                     else:
                         lastname = message
-                    if patient[0].age:
-                        age = patient[0].age
+                    if doctor[0].age:
+                        age = doctor[0].age
                     else:
                         age = message
-                    if patient[0].address:
-                        address = patient[0].address
+                    if doctor[0].address:
+                        address = doctor[0].address
                     else:
                         address = message
-                    if patient[0].gender == 'M':
+                    if doctor[0].gender == 'M':
                         gender = "Male"
-                    elif patient[0].gender == 'F':
+                    elif doctor[0].gender == 'F':
                         gender = "Female"
                     else:
                         gender = message
-            else:
+                else:
                     firstname = message
                     lastname = message
                     age = message
                     gender = message
                     address = message
-            return render(request, 'myapp/account.html', {'username': user.username, 'email': user.email,
+                return render(request, 'myapp/doctor.html', {'username': user.username, 'email': user.email,
+                                                              'userId': user.id, "firstname": firstname,
+                                                              "lastname": lastname,
+                                                              "age": age, "gender": gender, "address": address})
+            # 病人
+            else:
+                patient = Patient.objects.filter(user_id=user.id)
+                message = 'click to update'
+                if patient.count() != 0:
+                        if patient[0].first_name:
+                            firstname = patient[0].first_name
+                        else:
+                            firstname = message
+                        if patient[0].last_name:
+                            lastname = patient[0].last_name
+                        else:
+                            lastname = message
+                        if patient[0].age:
+                            age = patient[0].age
+                        else:
+                            age = message
+                        if patient[0].address:
+                            address = patient[0].address
+                        else:
+                            address = message
+                        if patient[0].gender == 'M':
+                            gender = "Male"
+                        elif patient[0].gender == 'F':
+                            gender = "Female"
+                        else:
+                            gender = message
+                else:
+                        firstname = message
+                        lastname = message
+                        age = message
+                        gender = message
+                        address = message
+                return render(request, 'myapp/account.html', {'username': user.username, 'email': user.email,
                                                               'userId': user.id, "firstname": firstname, "lastname": lastname,
                                                               "age":age, "gender": gender, "address": address})
         else:
@@ -195,8 +297,17 @@ def register(request):
             user = form.save()
             id = user.id
             username = user.username
-            p = Patient(user_id=id, username=username)
-            p.save()
+            identity = user.identity
+            if identity == '1':
+                mes = "click to update"
+                d = Doctor(user_id=id, username=username, first_name=mes, last_name=mes,
+                            address=mes, age=mes, gender=mes)
+                d.save()
+            else:
+                mes = "click to update"
+                p = Patient(user_id=id, username=username, first_name=mes, last_name=mes,
+                        address=mes, age=mes, gender=mes)
+                p.save()
             #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('myapp:user_login')
         else:

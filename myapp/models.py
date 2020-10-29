@@ -20,13 +20,18 @@ class Patient(models.Model):
 
 
 class Doctor(models.Model):
-    patient = models.ForeignKey(Patient, related_name='patients', on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
-    diagnosis = models.TextField(max_length=300, null=True, blank=True)
-    treatment = models.TextField(max_length=300, null=True, blank=True)
+    GENDER_CHOICES = [('M', 'Male'), ('F', 'Female')]
+    user_id = models.CharField(max_length=150, null=True, blank=True)
+    username = models.CharField(max_length=150, blank=True)
+    first_name = models.CharField(max_length=20, blank=True)
+    last_name = models.CharField(max_length=20, blank=True)
+    age = models.CharField(max_length=20, blank=True)
+    gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=True)
+    address = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        return self.name
+        return "username: {}, first_name:{},last_name: {}, age:{}, gender:{}, address:{}" \
+            .format(self.username, self.first_name, self.last_name, self.age, self.gender, self.address)
 
 
 class Topic(models.Model):
