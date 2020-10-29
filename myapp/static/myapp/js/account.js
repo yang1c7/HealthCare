@@ -90,6 +90,12 @@ setInterval(() => {
         $mask.css("opacity", '0.3');
     }else{
         $title.html('Good night, ' + username);
+        $bg.css({
+            "background-image": "url('../../static/myapp/img/evening.jpg')",
+            "background-repeat":"no-repeat",
+            "background-size": "100%"
+        });
+        $mask.css("opacity", '0.3');
     }
 }, 1000);
 
